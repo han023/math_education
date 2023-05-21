@@ -1,58 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    tools:context=".studentmainscreen">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10sp"
-        android:padding="10sp"
-        android:text="Login"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/l1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="20sp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        android:padding="30sp"
+        android:elevation="20sp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/detail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="200sp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10sp"
+            android:text="Hi! Welcome..."
             android:textColor="@color/black"
-            android:textColorHint="@color/grey"
-            android:layout_margin="10sp"
-            android:background="@drawable/btn_round"
-            android:hint="Username" />
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="200sp"
-            android:padding="10sp"
-            android:layout_margin="10sp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/grey"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_round"
-            android:hint="Password" />
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30sp"
+        android:padding="30sp"
+        android:text="Hy here are 2 button start test and view my score start a test to improve your math skills and view your score of all tests"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@+id/l1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <LinearLayout
@@ -67,27 +60,25 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/student"
+            android:id="@+id/test"
             android:layout_width="250sp"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_round"
             android:layout_margin="10sp"
             android:padding="10sp"
             android:textSize="15sp"
-            android:text="Login Student" />
+            android:text="start test" />
 
         <Button
-            android:id="@+id/parent"
+            android:id="@+id/score"
             android:layout_width="250sp"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_round"
             android:layout_margin="10sp"
             android:padding="10sp"
             android:textSize="15sp"
-            android:text="Login Parent" />
+            android:text="view score" />
 
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,8 +12,29 @@
         android:theme="@style/Theme.Matheducation"
         tools:targetApi="31">
         <activity
+            android:name=".viewscore"
+            android:exported="false" />
+        <activity
+            android:name=".scorescreen"
+            android:exported="false" />
+        <activity
+            android:name=".test"
+            android:exported="false" />
+        <activity
+            android:name=".studentmainscreen"
+            android:exported="false" />
+        <activity
+            android:name=".addstudent"
+            android:exported="false" />
+        <activity
+            android:name=".parentmainscreen"
+            android:exported="false" />
+        <activity
+            android:name=".parentlogin"
+            android:exported="false" />
+        <activity
             android:name=".splashscreen"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,9 +43,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
