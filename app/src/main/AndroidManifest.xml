@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Matheducation"
         tools:targetApi="31">
         <activity
+            android:name=".finalscore"
+            android:exported="false" />
+        <activity
             android:name=".viewscore"
             android:exported="false" />
         <activity

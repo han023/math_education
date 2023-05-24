@@ -32,13 +32,13 @@ class parentmainscreen : AppCompatActivity() {
 
         binding.score.setOnClickListener {
             val intent = Intent(this, viewscore::class.java)
-            intent.putExtra("id", "-1")
+            intent.putExtra("id", "-4")
             startActivity(intent)
         }
 
         binding.allscore.setOnClickListener {
             val intent = Intent(this, viewscore::class.java)
-            intent.putExtra("id", "-1")
+            intent.putExtra("id", "-3")
             startActivity(intent)
         }
 

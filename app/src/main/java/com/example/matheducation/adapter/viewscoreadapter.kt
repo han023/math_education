@@ -1,14 +1,18 @@
 package com.example.matheducation.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.matheducation.R
 import com.example.matheducation.model.viewscoremodel
+import com.example.matheducation.viewscore
 
-class viewscoreadapter(private val itemList: ArrayList<viewscoremodel>,private val id:String)
+class viewscoreadapter(private val itemList: ArrayList<viewscoremodel>,private val context: Context,private val id:String)
     : RecyclerView.Adapter<viewscoreadapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -22,6 +26,19 @@ class viewscoreadapter(private val itemList: ArrayList<viewscoremodel>,private v
         if(id=="-2"){
             holder.score.text = "name : " + item.score
             holder.date.text = "pass : " + item.date
+        } else if(id == "-3"){
+            val parts = item.score.split(",")
+            holder.score.text = "username : " + parts[0]+"      score : "+parts[1]
+            holder.date.text = "Date : " + item.date
+        }else if(id=="-4"){
+            holder.score.text = "name : " + item.score
+            holder.date.text = "pass : " + item.date
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, viewscore::class.java)
+                intent.putExtra("id", item.id)
+                intent.putExtra("name", item.score)
+                context.startActivity(intent)
+            }
         }
         else {
             holder.score.text = "Score : " + item.score

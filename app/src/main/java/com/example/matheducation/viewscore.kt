@@ -26,13 +26,26 @@ class viewscore : AppCompatActivity() {
         binding.recycler.layoutManager = LinearLayoutManager(this)
 
         splashscreen.dbHelper.openDatabase()
-        if(id == "-2") {
+        if(id == "-2"||id=="-4") {
             cursor = splashscreen.dbHelper.database?.rawQuery("SELECT * FROM TStudent", null)!!
             if (cursor != null && cursor.moveToFirst()) {
                 do {
                     val score = cursor.getString(cursor.getColumnIndexOrThrow("UserName"))
                     val date = cursor.getString(cursor.getColumnIndexOrThrow("UserPassWord"))
-                    val v = viewscoremodel(score, date)
+                    val id = cursor.getString(cursor.getColumnIndexOrThrow("Id"))
+                    val v = viewscoremodel(score, date,id)
+                    l.add(v)
+                } while (cursor.moveToNext())
+            }
+            cursor?.close()
+        } else if (id == "-3"){
+            cursor = splashscreen.dbHelper.database?.rawQuery("SELECT * from TTest as t join TStudent as s on StudentId ", null)!!
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    val score = cursor.getString(cursor.getColumnIndexOrThrow("UserName"))
+                    val score2 = cursor.getString(cursor.getColumnIndexOrThrow("Score"))
+                    val date = cursor.getString(cursor.getColumnIndexOrThrow("Date"))
+                    val v = viewscoremodel(score+","+score2, date,"")
                     l.add(v)
                 } while (cursor.moveToNext())
             }
@@ -50,7 +63,7 @@ class viewscore : AppCompatActivity() {
                 do {
                     val score = cursor.getString(cursor.getColumnIndexOrThrow("Score"))
                     val date = cursor.getString(cursor.getColumnIndexOrThrow("Date"))
-                    val v = viewscoremodel(score, date)
+                    val v = viewscoremodel(score, date,"")
                     l.add(v)
                 } while (cursor.moveToNext())
             }
@@ -58,7 +71,7 @@ class viewscore : AppCompatActivity() {
         }
 
         if (!l.isEmpty()) {
-            binding.recycler.adapter = viewscoreadapter(l,id)
+            binding.recycler.adapter = viewscoreadapter(l,this,id)
         }else{
             Toast.makeText(this,"No Record found",Toast.LENGTH_SHORT).show()
         }
