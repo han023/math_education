@@ -34,6 +34,8 @@ class test : AppCompatActivity() {
         binding.qa.text = start.toString()
         adddatatobutton(question[start].toString())
 
+        splashscreen.dbHelper.openDatabase()
+
         binding.a1.setOnClickListener {
             isselect = true
             checkanswer(binding.a1)
@@ -94,6 +96,12 @@ class test : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        splashscreen.dbHelper.close()
+    }
+
+
     fun randquestion():IntArray{
         val random = Random(System.currentTimeMillis())
         val numbers = mutableListOf<Int>()
@@ -121,17 +129,20 @@ class test : AppCompatActivity() {
 
     fun dataquestion():ArrayList<String>{
         val fq = ArrayList<String>()
+        splashscreen.dbHelper.openDatabase()
         for (number in question){
             val cursor = splashscreen.dbHelper.database?.rawQuery("SELECT * from TQuestion where Id == '$number'", null)
             if (cursor != null && cursor.moveToFirst()) {
                 fq.add( cursor.getString(cursor.getColumnIndexOrThrow("QuestionText")) )
             }
+            cursor?.close()
         }
         return fq
     }
 
     fun datamcq(id:String):ArrayList<String>{
         val fq = ArrayList<String>()
+        splashscreen.dbHelper.openDatabase()
         val cursor = splashscreen.dbHelper.database?.rawQuery("SELECT * from TAnswer where QuestionId == '$id'", null)
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -172,10 +183,12 @@ class test : AppCompatActivity() {
 
     fun correctanswer(id:String):String{
         var s = ""
+        splashscreen.dbHelper.openDatabase()
         val cursor = splashscreen.dbHelper.database?.rawQuery("SELECT * from TAnswer where QuestionId == '$id' and IsCorrect == 1", null)
         if (cursor != null && cursor.moveToFirst()) {
             s =  cursor.getString(cursor.getColumnIndexOrThrow("AnswerText"))
         }
+        cursor?.close()
         return s
     }
 

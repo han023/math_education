@@ -38,6 +38,7 @@ class viewscore : AppCompatActivity() {
                 } while (cursor.moveToNext())
             }
             cursor?.close()
+            splashscreen.dbHelper.close()
         } else if (id == "-3"){
             cursor = splashscreen.dbHelper.database?.rawQuery("SELECT * from TTest as t join TStudent as s on StudentId ", null)!!
             if (cursor != null && cursor.moveToFirst()) {
@@ -50,6 +51,7 @@ class viewscore : AppCompatActivity() {
                 } while (cursor.moveToNext())
             }
             cursor?.close()
+            splashscreen.dbHelper.close()
         }else {
             if (id == "-1") {
                 cursor = splashscreen.dbHelper.database?.rawQuery("SELECT * from TTest", null)!!
@@ -68,6 +70,7 @@ class viewscore : AppCompatActivity() {
                 } while (cursor.moveToNext())
             }
             cursor?.close()
+            splashscreen.dbHelper.close()
         }
 
         if (!l.isEmpty()) {

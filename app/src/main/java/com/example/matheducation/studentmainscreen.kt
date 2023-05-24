@@ -22,6 +22,7 @@ class studentmainscreen : AppCompatActivity() {
             intent.putExtra("id", id)
             intent.putExtra("name", name)
             startActivity(intent)
+            finish()
         }
 
         binding.score.setOnClickListener {

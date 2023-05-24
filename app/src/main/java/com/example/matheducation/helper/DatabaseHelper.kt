@@ -1,4 +1,5 @@
 import android.content.Context
+import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
@@ -8,7 +9,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-class DatabaseHelper(context: Context) :
+class DatabaseHelper(context: Context,sharedPreferences:SharedPreferences) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
@@ -16,14 +17,16 @@ class DatabaseHelper(context: Context) :
         private const val DATABASE_VERSION = 1
         private const val DB_PATH = "/data/data/com.example.matheducation/databases/"
     }
-
     var database: SQLiteDatabase? = null
 
     init {
         // Create an empty database in the default system location
         context.openOrCreateDatabase(DATABASE_NAME, 0, null).close()
         try {
-            copyDatabase(context)
+            if(!sharedPreferences.contains("123")){
+                sharedPreferences.edit().putString("123", "1234").apply()
+                copyDatabase(context)
+            }
         } catch (e: IOException) {
             throw RuntimeException("Error copying database", e)
         }

@@ -24,6 +24,7 @@ class finalscore : AppCompatActivity() {
         l = ArrayList<viewscoremodel>()
         binding.recycler.layoutManager = LinearLayoutManager(this)
 
+        splashscreen.dbHelper.openDatabase()
         val cursor = splashscreen.dbHelper.database?.rawQuery(
             "SELECT * from TTest where StudentId == '$id'",
             null
@@ -37,6 +38,13 @@ class finalscore : AppCompatActivity() {
         } while (cursor.moveToNext())
         }
         cursor?.close()
+        splashscreen.dbHelper.close()
+
+        if (!l.isEmpty()) {
+            binding.recycler.adapter = viewscoreadapter(l,this,id)
+        }else{
+            Toast.makeText(this,"No Record found", Toast.LENGTH_SHORT).show()
+        }
 
         if (!l.isEmpty()) {
             binding.recycler.adapter = viewscoreadapter(l,this,id)

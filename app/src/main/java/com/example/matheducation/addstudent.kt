@@ -27,7 +27,7 @@ class addstudent : AppCompatActivity() {
             } else {
 
                 var UserName = ""
-
+                splashscreen.dbHelper.openDatabase()
                 val cursor = splashscreen.dbHelper.database?.rawQuery("SELECT * from TStudent where UserName == '$user' AND UserPassWord = '$pass'", null)
                 if (cursor != null && cursor.moveToFirst()) {
                     UserName = cursor.getString(cursor.getColumnIndexOrThrow("UserName"))
@@ -48,6 +48,8 @@ class addstudent : AppCompatActivity() {
                         Toast.makeText(this, "Values inserted successfully", Toast.LENGTH_SHORT).show()
                         finish()
                     }
+                    cursor!!.close()
+                    splashscreen.dbHelper.close()
                 }else {
                     Toast.makeText(this, "already have account", Toast.LENGTH_SHORT).show()
                 }
