@@ -31,7 +31,7 @@ class test : AppCompatActivity() {
 
         correct = correctanswer(question[start].toString())
         binding.question.text = questiondata[start]
-        binding.qa.text = start.toString()
+        binding.qa.text = "${start+1}"
         adddatatobutton(question[start].toString())
 
         splashscreen.dbHelper.openDatabase()
@@ -79,7 +79,7 @@ class test : AppCompatActivity() {
                     addscore()
                     adddatatobutton(question[start].toString())
                     correct = correctanswer(question[start].toString())
-                    binding.qa.text = start.toString()
+                    binding.qa.text = "${start+1}"
                     binding.question.text = questiondata[start]
                 } else {
                     val intent = Intent(this, scorescreen::class.java)
