@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.matheducation.R
+import com.example.matheducation.finalscore
 import com.example.matheducation.model.viewscoremodel
 import com.example.matheducation.viewscore
 
@@ -32,9 +33,9 @@ class viewscoreadapter(private val itemList: ArrayList<viewscoremodel>,private v
             holder.date.text = "Date : " + item.date
         }else if(id=="-4"){
             holder.score.text = "name : " + item.score
-            holder.date.text = "pass : " + item.date
+            holder.date.text = ""
             holder.itemView.setOnClickListener {
-                val intent = Intent(context, viewscore::class.java)
+                val intent = Intent(context, finalscore::class.java)
                 intent.putExtra("id", item.id)
                 intent.putExtra("name", item.score)
                 context.startActivity(intent)

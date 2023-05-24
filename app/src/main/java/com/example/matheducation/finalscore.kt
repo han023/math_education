@@ -14,7 +14,7 @@ class finalscore : AppCompatActivity() {
         binding = ActivityFinalscoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var name = intent.getStringExtra("user").toString()
+        var name = intent.getStringExtra("name").toString()
         var id = intent.getStringExtra("id").toString()
 
         binding.name.setText("name : "+name)
