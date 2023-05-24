@@ -123,6 +123,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
                     val intent = Intent(this, parentmainscreen::class.java)
                     intent.putExtra("user", UserName)
                     intent.putExtra("pass", UserPassWord)
